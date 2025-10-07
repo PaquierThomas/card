@@ -1,0 +1,50 @@
+---
+import { onMount } from 'astro/client';
+---
+
+<!-- Le canvas sera injecté ici -->
+<div id="tunnel-container" class="fixed top-0 left-0 w-screen h-screen z-0"></div>
+
+
+<!-- Shaders GLSL -->
+<script id="vertexShader" type="x-shader/x-vertex">
+  void main() {
+    gl_Position = vec4(position, 1.0);
+  }
+</script>
+
+
+<script id="fragmentShader" type="x-shader/x-fragment">
+  precision highp float;
+
+  uniform float iTime;
+  uniform vec2 iResolution;
+  uniform float scrollOffset;
+
+  void mainImage(out vec4 o, vec2 I) {
+    I -= o.zw = iResolution.xy / 2.0;
+    float t = iTime * 5.0 + scrollOffset * 200.0;
+    float pattern = sin(atan(I.y, I.x) / 0.1) * sin(20.0 * (o.w /= length(I)) + t) - 1.0 + o.w;
+    float monochrome = 1.0 - pattern * 0.5;
+    float invertedMonochrome = 1.0 - monochrome;
+    o = vec4(invertedMonochrome, invertedMonochrome, invertedMonochrome, 1.0);
+  }
+
+  void main() {
+    mainImage(gl_FragColor, gl_FragCoord.xy);
+  }
+</script>
+
+<script src="../scripts/tunnel.js"></script>
+
+<style>
+  #tunnel-container {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+  canvas {
+    display: block;
+  }
+</style>
