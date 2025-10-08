@@ -1,0 +1,37 @@
+/* src/styles/global.css */
+
+@font-face {
+  font-family: "AkkuratMono-Regular";
+  src: url("https://db.onlinewebfonts.com/t/2ae387e9fd826eca2b02f780e91333c7.eot");
+  src:
+    url("https://db.onlinewebfonts.com/t/2ae387e9fd826eca2b02f780e91333c7.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/2ae387e9fd826eca2b02f780e91333c7.woff2") format("woff2"),
+    url("https://db.onlinewebfonts.com/t/2ae387e9fd826eca2b02f780e91333c7.woff") format("woff"),
+    url("https://db.onlinewebfonts.com/t/2ae387e9fd826eca2b02f780e91333c7.ttf") format("truetype"),
+    url("https://db.onlinewebfonts.com/t/2ae387e9fd826eca2b02f780e91333c7.svg#AkkuratMono-Regular")
+      format("svg");
+}
+@font-face {
+  font-family: "TIMMONSNY-Regular";
+  src: url("https://db.onlinewebfonts.com/t/26b4978e67a51484ed7bccea1ffb38b8.eot");
+  src:
+    url("https://db.onlinewebfonts.com/t/26b4978e67a51484ed7bccea1ffb38b8.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/26b4978e67a51484ed7bccea1ffb38b8.woff2") format("woff2"),
+    url("https://db.onlinewebfonts.com/t/26b4978e67a51484ed7bccea1ffb38b8.woff") format("woff"),
+    url("https://db.onlinewebfonts.com/t/26b4978e67a51484ed7bccea1ffb38b8.ttf") format("truetype"),
+    url("https://db.onlinewebfonts.com/t/26b4978e67a51484ed7bccea1ffb38b8.svg#TIMMONSNY-Regular")
+      format("svg");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}

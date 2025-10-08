@@ -1,9 +1,13 @@
 ---
 import { onMount } from 'astro/client';
+import "../styles/global.css";
 ---
 
 <!-- Le canvas sera injecté ici -->
-<div id="tunnel-container" class="fixed top-0 left-0 w-screen h-screen z-0"></div>
+<div id="tunnel-container" class="container fixed top-0 left-0 w-screen h-screen z-0">
+  <div class="overlay"></div>
+  <div class="slider"></div>
+</div>
 
 
 <!-- Shaders GLSL -->
@@ -36,15 +40,84 @@ import { onMount } from 'astro/client';
 </script>
 
 <script src="../scripts/tunnel.js"></script>
+<!-- 
+<style is:global>
 
-<style>
-  #tunnel-container {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-  }
-  canvas {
-    display: block;
-  }
-</style>
+  .container{
+	width: 100%;
+	height: 2000vh;
+}
+
+
+/* Effet de vignette sombre autour du tunnel */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 100%);
+}
+
+/* Le slider 3D */
+.slider {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  transform-style: preserve-3d;
+  perspective: 500px;
+  overflow: hidden;
+}
+
+/* Chaque slide */
+.slide {
+  position: absolute;
+  width: 400px;
+  height: 500px;
+  will-change: transform, opacity;
+}
+
+/* Image du slide */
+.slide-img {
+  width: 100%;
+  height: 100%;
+  padding: 0.5em;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+}
+
+/* Texte sous l’image */
+.slide-copy {
+  position: absolute;
+  width: 100%;
+  bottom: -24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Smooth scroll (Lenis) */
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Images utilisées dans les slides */
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style> -->

@@ -7,6 +7,12 @@
       "options": {
         "parser": "astro"
       }
+    },
+    {
+      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      "options": {
+        "parser": "babel"
+      }
     }
   ],
   "semi": true,

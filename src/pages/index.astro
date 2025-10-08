@@ -2,194 +2,405 @@
 import TunnelCanvas from "../components/TunnelCanvas.astro";
 ---
 
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3D Tunnel Gallery</title>
-</head>
-<body>
-  <nav>
-    <div class="nav-items">
-        <a href="#">Work</a>
-        <a href="#">Archive</a>
-    </div>
-    <div class="logo">
-        <a href="#">Tunnel Vision</a>
-    </div>
-    <div class="nav-items">
-        <a href="#">Info</a>
-        <a href="#">Contact</a>
-    </div>
-</nav>
-<TunnelCanvas/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <title>3D Tunnel Gallery</title>
+  </head>
+  <script>
+    window.addEventListener("scroll", () => {
+      const indicator = document.querySelector(".mouse-indicator");
+      const triggerPoint = window.innerHeight * 0.4; // quand on a scrollé 40% de la hauteur de l’écran
 
-  <footer>
-	<p>Watch Showreel</p>
-	<p>Launching 2025</p>
-  </footer>
+      if (window.scrollY > triggerPoint) {
+        indicator.classList.add("hide");
+      } else {
+        indicator.classList.remove("hide");
+      }
+    });
+  </script>
+  <body>
+    <nav>
+      <div class="nav-items">
+        <a href="https://thomaspaquier.fr/projects/" target="_blank">projects</a>
+      </div>
+      <div class="logo">
+        <a href="#">Thomas Paquier</a>
+      </div>
+      <div class="nav-items">
+        <a href="mailto:thomas.paquier.pro@gmail.com">Contact</a>
+      </div>
+    </nav>
 
-  
-</body>
+    <div class="container">
+      <TunnelCanvas />
+    </div>
 
+    <footer>
+      <a href="https://www.youtube.com/watch?v=wrrMscS8ipY" target="_blank">Watch Showreel</a>
+      <p>© 2025 Thomas Paquier</p>
+    </footer>
+
+    <div class="mouse-indicator">
+      <div class="mouse">
+        <div class="trackball"></div>
+      </div>
+      <span>Scroll</span>
+    </div>
+  </body>
 </html>
 
+<style is:global>
+  body {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+  }
 
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
 
-<style scoped>
-	@font-face {
-    font-family: "AkkuratMono-Regular";
-    src: url("https://db.onlinewebfonts.com/t/2ae387e9fd826eca2b02f780e91333c7.eot");
-    src: url("https://db.onlinewebfonts.com/t/2ae387e9fd826eca2b02f780e91333c7.eot?#iefix")format("embedded-opentype"),
-    url("https://db.onlinewebfonts.com/t/2ae387e9fd826eca2b02f780e91333c7.woff2")format("woff2"),
-    url("https://db.onlinewebfonts.com/t/2ae387e9fd826eca2b02f780e91333c7.woff")format("woff"),
-    url("https://db.onlinewebfonts.com/t/2ae387e9fd826eca2b02f780e91333c7.ttf")format("truetype"),
-    url("https://db.onlinewebfonts.com/t/2ae387e9fd826eca2b02f780e91333c7.svg#AkkuratMono-Regular")format("svg");
-}
-@font-face {
-    font-family: "TIMMONSNY-Regular";
-    src: url("https://db.onlinewebfonts.com/t/26b4978e67a51484ed7bccea1ffb38b8.eot");
-    src: url("https://db.onlinewebfonts.com/t/26b4978e67a51484ed7bccea1ffb38b8.eot?#iefix")format("embedded-opentype"),
-    url("https://db.onlinewebfonts.com/t/26b4978e67a51484ed7bccea1ffb38b8.woff2")format("woff2"),
-    url("https://db.onlinewebfonts.com/t/26b4978e67a51484ed7bccea1ffb38b8.woff")format("woff"),
-    url("https://db.onlinewebfonts.com/t/26b4978e67a51484ed7bccea1ffb38b8.ttf")format("truetype"),
-    url("https://db.onlinewebfonts.com/t/26b4978e67a51484ed7bccea1ffb38b8.svg#TIMMONSNY-Regular")format("svg");
-}
-	* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-body {
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-}
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
+  a,
+  p {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: "AkkuratMono-Regular", Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+  }
 
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-a, p {
-  color: #fff;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-family: "AkkuratMono-Regular", Arial, Helvetica, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-}
+  nav,
+  footer {
+    position: fixed;
+    width: 100%;
+    padding: 3em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: exclusion;
+    z-index: 2;
+  }
 
-nav, footer {
-  position: fixed;
-  width: 100%;
-  padding: 2em;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  mix-blend-mode: exclusion;
-  z-index: 2;
-}
-nav {
-  top: 0;
-}
-footer {
-  bottom: 0;
-}
- 
+  nav {
+    top: 0;
+  }
 
-nav >div {
-	display: flex;
-	flex: 1;
-	gap: 2em;
-}
+  footer {
+    bottom: 0;
+  }
 
-.logo {
-  display: flex;
-  justify-content: center;
-}
+  nav > div {
+    display: flex;
+    flex: 1;
+    gap: 2em;
+  }
 
-.logo a {
-  font-family: "TIMMONSNY-Regular", Arial, Helvetica, sans-serif;
-  font-size: 48px;
-  font-weight: lighter;
-}
+  .logo {
+    display: flex;
+    justify-content: center;
+  }
 
-.nav-items:nth-child(3) {
-  justify-content: flex-end;
-}
+  .logo a {
+    font-family: "TIMMONSNY-Regular", Arial, Helvetica, sans-serif;
+    font-size: 58px;
+    font-weight: lighter;
+  }
 
-.container{
-	width: 100%;
-	height: 2000vh;
-}
+  .nav-items:nth-child(3) {
+    justify-content: flex-end;
+  }
 
-.slider{
-	position: fixed;
-	top:0;
-	width: 100vw;
-	height: 100vh;
-	transform-style: preserve-3d;
-	perspective: 500px;
-	overflow: hidden;
-}
-.slide{
-  position: absolute;
-  width: 400px;
-  height: 500px;
-  will-change: transform, opacity;
-}
+  .container {
+    width: 100%;
+    height: 2000vh;
+  }
 
-.slide-img{
-  width: 100%;
-  height: 100%;
-  padding: 0.5em;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(20px);
-}
-.slide-copy{
-  position: absolute;
-  width: 100%;
-  bottom: -24px;
-  display: flex;
-  justify-content: space-between;
-}
+  .slider {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    transform-style: preserve-3d;
+    perspective: 500px;
+    overflow: hidden;
+  }
 
-.overlay {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: #000;
-background: radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,1) 100%);
-}
+  .slide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 700px;
+    will-change: transform, opacity;
+  }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
+  .slide-img {
+    width: 100%;
+    height: 100%;
+    padding: 0.5em;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+  }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
+  .slide-copy {
+    position: absolute;
+    width: 100%;
+    bottom: -24px;
+    display: flex;
+    justify-content: space-between;
+  }
 
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 100%);
+  }
 
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
-}
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
 
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
 
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
+  }
+
+  /* --- Mouse Scroll Indicator réduit 25% --- */
+  .mouse-indicator {
+    position: fixed;
+    bottom: 10vh; /* légèrement remonté */
+    left: 50%;
+    transform: translateX(-50%) scale(1.2); /* réduction 25% */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    z-index: 5;
+    color: #fff; /* texte subtil */
+    mix-blend-mode: exclusion;
+    opacity: 0.9;
+  }
+
+  .mouse-indicator span {
+    margin-top: 16px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: "AkkuratMono-Regular", Arial, Helvetica, sans-serif;
+    opacity: 0.7;
+    /* Pas d'animation pour le texte */
+  }
+
+  .mouse {
+    position: relative;
+    width: 39px; /* 52px * 0.75 */
+    height: 66px; /* 88px * 0.75 */
+    border-radius: 100px;
+    background: linear-gradient(
+      transparent 0%,
+      transparent 50%,
+      #bbb 50%,
+      /* corps gris clair */ #bbb 100%
+    );
+    background-color: #444; /* fallback plus sombre */
+    background-size: 100% 200%;
+    animation:
+      colorSlide 5s linear infinite,
+      nudgeMouse 5s ease-out infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mouse::before {
+    content: "";
+    position: absolute;
+    width: 35px; /* 46px * 0.75 */
+    height: 62px; /* 82px * 0.75 */
+    border-radius: 100px;
+    background-color: #000; /* fond noir */
+  }
+
+  .trackball {
+    width: 9px; /* 10px * 0.75 */
+    height: 9px;
+    background-color: #fff;
+    border-radius: 100%;
+    animation: trackBallSlide 5s linear infinite;
+    position: relative;
+  }
+
+  /* --- Animations inchangées --- */
+  @keyframes colorSlide {
+    0% {
+      background-position: 0% 100%;
+    }
+    20% {
+      background-position: 0% 0%;
+    }
+    21% {
+      background-color: #444;
+    }
+    29.99% {
+      background-color: #bbb;
+      background-position: 0% 0%;
+    }
+    30% {
+      background-color: #444;
+      background-position: 0% 100%;
+    }
+    50% {
+      background-position: 0% 0%;
+    }
+    51% {
+      background-color: #444;
+    }
+    59% {
+      background-color: #bbb;
+      background-position: 0% 0%;
+    }
+    60% {
+      background-color: #444;
+      background-position: 0% 100%;
+    }
+    80% {
+      background-position: 0% 0%;
+    }
+    81% {
+      background-color: #444;
+    }
+    90%,
+    100% {
+      background-color: #bbb;
+    }
+  }
+
+  @keyframes trackBallSlide {
+    0% {
+      opacity: 1;
+      transform: scale(1) translateY(-15px);
+    }
+    6% {
+      opacity: 1;
+      transform: scale(0.9) translateY(3.75px);
+    }
+    14% {
+      opacity: 0;
+      transform: scale(0.4) translateY(30px);
+    }
+    15%,
+    19% {
+      opacity: 0;
+      transform: scale(0.4) translateY(-15px);
+    }
+    28%,
+    29.99% {
+      opacity: 1;
+      transform: scale(1) translateY(-15px);
+    }
+    30% {
+      opacity: 1;
+      transform: scale(1) translateY(-15px);
+    }
+    36% {
+      opacity: 1;
+      transform: scale(0.9) translateY(3.75px);
+    }
+    44% {
+      opacity: 0;
+      transform: scale(0.4) translateY(30px);
+    }
+    45%,
+    49% {
+      opacity: 0;
+      transform: scale(0.4) translateY(-15px);
+    }
+    58%,
+    59.99% {
+      opacity: 1;
+      transform: scale(1) translateY(-15px);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1) translateY(-15px);
+    }
+    66% {
+      opacity: 1;
+      transform: scale(0.9) translateY(3.75px);
+    }
+    74% {
+      opacity: 0;
+      transform: scale(0.4) translateY(30px);
+    }
+    75%,
+    79% {
+      opacity: 0;
+      transform: scale(0.4) translateY(-15px);
+    }
+    88%,
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(-15px);
+    }
+  }
+
+  @keyframes nudgeMouse {
+    0% {
+      transform: translateY(0);
+    }
+    20% {
+      transform: translateY(6px);
+    }
+    30% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(6px);
+    }
+    60% {
+      transform: translateY(0);
+    }
+    80% {
+      transform: translateY(6px);
+    }
+    90% {
+      transform: translateY(0);
+    }
+  }
+  .mouse-indicator {
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+
+  .mouse-indicator.hide {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px) scale(1.2);
+    pointer-events: none;
+  }
 </style>
